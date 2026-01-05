@@ -14,16 +14,10 @@ const client = new Client({
 });
 
 // ========= CONFIG =========
-// Accept either TZ or TIMEZONE in .env
 const TZ = process.env.TZ || process.env.TIMEZONE || "America/New_York";
-
 const CLOCK_CHANNEL_ID = process.env.CLOCK_CHANNEL_ID;
 const ARCHIVE_CHANNEL_ID = process.env.ARCHIVE_CHANNEL_ID;
-
-// Accept either ADMIN_USER_IDS or OWNER_ID in .env
-const ADMIN_USER_IDS = (
-  process.env.ADMIN_USER_IDS || process.env.OWNER_ID || ""
-)
+const ADMIN_USER_IDS = (process.env.ADMIN_USER_IDS || process.env.OWNER_ID || "")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
@@ -35,7 +29,6 @@ function nowISO() {
   return new Date().toISOString();
 }
 
-// Example: Jan 03, 2026, 6:25 PM  (NO seconds)
 function formatNY(date) {
   return new Intl.DateTimeFormat("en-US", {
     timeZone: TZ,
@@ -94,7 +87,6 @@ const commands = [
         .setDescription("Optional reason (e.g., lunch, meeting, etc.)")
         .setRequired(false)
     ),
-
   new SlashCommandBuilder()
     .setName("clockin")
     .setDescription("Clock back in from a break")
@@ -104,44 +96,48 @@ const commands = [
         .setDescription("Optional note (e.g., back, ready, etc.)")
         .setRequired(false)
     ),
-
   new SlashCommandBuilder()
     .setName("archive")
     .setDescription("Archive today's clock messages (Admin only)"),
 ].map((c) => c.toJSON());
 
-// Register commands (global)
 const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
 
-(async () => {
+async function registerCommands() {
+  if (!process.env.CLIENT_ID) {
+    console.error("Missing CLIENT_ID in .env");
+    return;
+  }
   try {
-    console.log("Registering slash commands...");
-    await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
+    console.log(`Registering slash commands for CLIENT_ID: ${process.env.CLIENT_ID}...`);
+    const data = await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
       body: commands,
     });
-    console.log("Slash commands registered.");
+    console.log(`Successfully reloaded ${data.length} application (/) commands.`);
   } catch (err) {
     console.error("Error registering slash commands:", err);
   }
-})();
+}
 
 // ========= BOT EVENTS =========
-client.once("ready", () => {
-  console.log(`Logged in as ${client.user.tag}`);
-  console.log("TZ =", TZ);
-  console.log("ADMIN_USER_IDS =", ADMIN_USER_IDS);
+client.once("ready", async () => {
+  try {
+    console.log(`Logged in as ${client.user.tag}`);
+    console.log("TZ =", TZ);
+    console.log("ADMIN_USER_IDS =", ADMIN_USER_IDS);
+    await registerCommands();
+  } catch (err) {
+    console.error("Error in ready event:", err);
+  }
 });
 
 client.on("interactionCreate", async (interaction) => {
   try {
     if (!interaction.isChatInputCommand()) return;
-
     console.log(`Received command: ${interaction.commandName} from ${interaction.user.tag}`);
 
-    // Optional: force clockin/out to run only in clock channel
     if (
-      (interaction.commandName === "clockout" ||
-        interaction.commandName === "clockin") &&
+      (interaction.commandName === "clockout" || interaction.commandName === "clockin") &&
       CLOCK_CHANNEL_ID &&
       interaction.channelId !== CLOCK_CHANNEL_ID
     ) {
@@ -153,20 +149,13 @@ client.on("interactionCreate", async (interaction) => {
 
     const userId = interaction.user.id;
     const mention = `<@${userId}>`;
-    const displayName =
-      interaction.member?.displayName ||
-      interaction.user.globalName ||
-      interaction.user.username;
-
+    const displayName = interaction.member?.displayName || interaction.user.globalName || interaction.user.username;
     const now = new Date();
     const stamped = formatNY(now);
 
     if (interaction.commandName === "clockout") {
       const reason = interaction.options.getString("reason") || "";
-      const msg = `⏸️ ${mention} clocked out at **${stamped} (${TZ})**.\n${
-        reason ? `Reason: ${reason}` : `Reason: (none)`
-      }`;
-
+      const msg = `⏸️ ${mention} clocked out at **${stamped} (${TZ})**.\n${reason ? `Reason: ${reason}` : `Reason: (none)`}`;
       addEntry({
         type: "OUT",
         userId,
@@ -177,22 +166,15 @@ client.on("interactionCreate", async (interaction) => {
         tz: TZ,
         text: reason || "",
       });
-
       return interaction.reply({ content: msg });
     }
 
     if (interaction.commandName === "clockin") {
       const note = interaction.options.getString("note") || "";
-
       const data = loadData();
-      const lastOut = [...data]
-        .reverse()
-        .find(
-          (e) =>
-            e.userId === userId &&
-            e.type === "OUT" &&
-            sameNYDate(new Date(e.timestampISO), now)
-        );
+      const lastOut = [...data].reverse().find(
+        (e) => e.userId === userId && e.type === "OUT" && sameNYDate(new Date(e.timestampISO), now)
+      );
 
       let awayText = "";
       if (lastOut) {
@@ -202,10 +184,7 @@ client.on("interactionCreate", async (interaction) => {
         awayText = ` (away for ${mins}m ${secs}s)`;
       }
 
-      const msg = `▶️ ${mention} clocked in at **${stamped} (${TZ})**${awayText}.\n${
-        note ? `Note: ${note}` : `Note: (none)`
-      }`;
-
+      const msg = `▶️ ${mention} clocked in at **${stamped} (${TZ})**${awayText}.\n${note ? `Note: ${note}` : `Note: (none)`}`;
       addEntry({
         type: "IN",
         userId,
@@ -216,60 +195,35 @@ client.on("interactionCreate", async (interaction) => {
         tz: TZ,
         text: note || "",
       });
-
       return interaction.reply({ content: msg });
     }
 
     if (interaction.commandName === "archive") {
-      // Admin lock (you)
       if (!isAdmin(userId)) {
-        return interaction.reply({
-          content: `You don't have permission to use this command.`,
-          ephemeral: true,
-        });
+        return interaction.reply({ content: `You don't have permission to use this command.`, ephemeral: true });
       }
-
       if (!ARCHIVE_CHANNEL_ID || !CLOCK_CHANNEL_ID) {
-        return interaction.reply({
-          content:
-            "Missing ARCHIVE_CHANNEL_ID or CLOCK_CHANNEL_ID in your env. Add them and restart.",
-          ephemeral: true,
-        });
+        return interaction.reply({ content: "Missing ARCHIVE_CHANNEL_ID or CLOCK_CHANNEL_ID in your env.", ephemeral: true });
       }
 
-      await interaction.reply({
-        content: `Archiving today's clock messages...`,
-        ephemeral: true,
-      });
-
-      const guild = interaction.guild;
-      const archiveChannel = await guild.channels.fetch(ARCHIVE_CHANNEL_ID);
-      const clockChannel = await guild.channels.fetch(CLOCK_CHANNEL_ID);
-
+      await interaction.reply({ content: `Archiving today's clock messages...`, ephemeral: true });
+      const archiveChannel = await interaction.guild.channels.fetch(ARCHIVE_CHANNEL_ID);
+      const clockChannel = await interaction.guild.channels.fetch(CLOCK_CHANNEL_ID);
       const data = loadData();
-      const todayEntries = data.filter((e) =>
-        sameNYDate(new Date(e.timestampISO), now)
-      );
+      const todayEntries = data.filter((e) => sameNYDate(new Date(e.timestampISO), now));
 
       if (todayEntries.length === 0) {
-        return interaction.followUp({
-          content: `No clock data found for today.`,
-          ephemeral: true,
-        });
+        return interaction.followUp({ content: `No clock data found for today.`, ephemeral: true });
       }
 
       const header = `**Clock Archive — ${formatNY(now)} (${TZ})**`;
       const lines = todayEntries.map((e) => {
         const icon = e.type === "OUT" ? "⏸️" : "▶️";
         const label = e.type === "OUT" ? "clocked out" : "clocked in";
-        const extra =
-          e.type === "OUT"
-            ? `Reason: ${e.text || "(none)"}`
-            : `Note: ${e.text || "(none)"}`;
+        const extra = e.type === "OUT" ? `Reason: ${e.text || "(none)"}` : `Note: ${e.text || "(none)"}`;
         return `${icon} **${e.displayName}** (${e.mention}) ${label} at **${e.stamped} (${TZ})**\n${extra}`;
       });
 
-      // Chunk safely
       const chunks = [];
       let current = header + "\n\n";
       for (const line of lines) {
@@ -286,53 +240,33 @@ client.on("interactionCreate", async (interaction) => {
         await archiveChannel.send(chunk);
       }
 
-      // Delete today's bot messages from clock channel
       let deleted = 0;
-      let failed = 0;
-
       let beforeId = undefined;
       for (let rounds = 0; rounds < 10; rounds++) {
-        const fetched = await clockChannel.messages.fetch({
-          limit: 100,
-          before: beforeId,
-        });
-
+        const fetched = await clockChannel.messages.fetch({ limit: 100, before: beforeId });
         if (fetched.size === 0) break;
-
         const arr = [...fetched.values()];
         beforeId = arr[arr.length - 1].id;
-
         for (const msg of arr) {
-          const isBot = msg.author?.id === client.user.id;
-          const isToday = sameNYDate(msg.createdAt, now);
-
-          if (isBot && isToday) {
-            try {
-              await msg.delete();
-              deleted++;
-            } catch {
-              failed++;
-            }
+          if (msg.author?.id === client.user.id && sameNYDate(msg.createdAt, now)) {
+            try { await msg.delete(); deleted++; } catch {}
           }
         }
       }
-
-      return interaction.followUp({
-        content: `Archive complete. Archived ${todayEntries.length} entries. Deleted ${deleted} messages. Failed ${failed}.`,
-        ephemeral: true,
-      });
+      return interaction.followUp({ content: `Archive complete. Archived ${todayEntries.length} entries. Deleted ${deleted} messages.`, ephemeral: true });
     }
   } catch (err) {
     console.error(err);
     if (interaction.isRepliable()) {
-      try {
-        await interaction.reply({
-          content: "Something went wrong. Check the console logs.",
-          ephemeral: true,
-        });
-      } catch {}
+      try { await interaction.reply({ content: "Something went wrong. Check the console logs.", ephemeral: true }); } catch {}
     }
   }
 });
 
-client.login(process.env.DISCORD_TOKEN);
+console.log("Starting bot...");
+const token = process.env.DISCORD_TOKEN;
+if (!token) {
+  console.error("Missing DISCORD_TOKEN in .env");
+  process.exit(1);
+}
+client.login(token).catch(err => console.error("Failed to login:", err));
