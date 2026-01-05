@@ -121,7 +121,7 @@ const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
     });
     console.log("Slash commands registered.");
   } catch (err) {
-    console.error(err);
+    console.error("Error registering slash commands:", err);
   }
 })();
 
@@ -135,6 +135,8 @@ client.once("ready", () => {
 client.on("interactionCreate", async (interaction) => {
   try {
     if (!interaction.isChatInputCommand()) return;
+
+    console.log(`Received command: ${interaction.commandName} from ${interaction.user.tag}`);
 
     // Optional: force clockin/out to run only in clock channel
     if (
