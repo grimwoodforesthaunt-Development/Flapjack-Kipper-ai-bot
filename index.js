@@ -1,4 +1,16 @@
 require("dotenv").config();
+
+// ✅ Keep-alive web server (for Replit / UptimeRobot)
+const http = require("http");
+const PORT = process.env.PORT || 3000;
+
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Grimwood Clock Bot is running ✅");
+  })
+  .listen(PORT, () => console.log("Health server running on port", PORT));
+
 const fs = require("fs");
 const path = require("path");
 const {
@@ -14,10 +26,11 @@ const client = new Client({
 });
 
 // ========= CONFIG =========
-const TZ = process.env.TZ || process.env.TIMEZONE || "America/New_York";
+const TZ = process.env.TZ || "America/New_York";
 const CLOCK_CHANNEL_ID = process.env.CLOCK_CHANNEL_ID;
 const ARCHIVE_CHANNEL_ID = process.env.ARCHIVE_CHANNEL_ID;
-const ADMIN_USER_IDS = (process.env.ADMIN_USER_IDS || process.env.OWNER_ID || "")
+
+const ADMIN_USER_IDS = (process.env.ADMIN_USER_IDS || "")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
@@ -54,9 +67,7 @@ function sameNYDate(a, b) {
 function loadData() {
   try {
     if (!fs.existsSync(DATA_FILE)) return [];
-    const raw = fs.readFileSync(DATA_FILE, "utf8");
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    return JSON.parse(fs.readFileSync(DATA_FILE, "utf8")) || [];
   } catch {
     return [];
   }
@@ -82,20 +93,16 @@ const commands = [
     .setName("clockout")
     .setDescription("Clock out for a break")
     .addStringOption((opt) =>
-      opt
-        .setName("reason")
-        .setDescription("Optional reason (e.g., lunch, meeting, etc.)")
-        .setRequired(false)
+      opt.setName("reason").setDescription("Optional reason")
     ),
+
   new SlashCommandBuilder()
     .setName("clockin")
     .setDescription("Clock back in from a break")
     .addStringOption((opt) =>
-      opt
-        .setName("note")
-        .setDescription("Optional note (e.g., back, ready, etc.)")
-        .setRequired(false)
+      opt.setName("note").setDescription("Optional note")
     ),
+
   new SlashCommandBuilder()
     .setName("archive")
     .setDescription("Archive today's clock messages (Admin only)"),
@@ -104,169 +111,91 @@ const commands = [
 const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
 
 async function registerCommands() {
-  if (!process.env.CLIENT_ID) {
-    console.error("Missing CLIENT_ID in .env");
-    return;
-  }
-  try {
-    console.log(`Registering slash commands for CLIENT_ID: ${process.env.CLIENT_ID}...`);
-    const data = await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
-      body: commands,
-    });
-    console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-  } catch (err) {
-    console.error("Error registering slash commands:", err);
-  }
+  await rest.put(
+    Routes.applicationCommands(process.env.CLIENT_ID),
+    { body: commands }
+  );
 }
 
-// ========= BOT EVENTS =========
-client.once("ready", async () => {
-  try {
-    console.log(`Logged in as ${client.user.tag}`);
-    console.log("TZ =", TZ);
-    console.log("ADMIN_USER_IDS =", ADMIN_USER_IDS);
-    await registerCommands();
-  } catch (err) {
-    console.error("Error in ready event:", err);
-  }
+// ========= EVENTS =========
+client.once("clientReady", async () => {
+  console.log(`Logged in as ${client.user.tag}`);
+  await registerCommands();
 });
 
 client.on("interactionCreate", async (interaction) => {
-  try {
-    if (!interaction.isChatInputCommand()) return;
-    console.log(`Received command: ${interaction.commandName} from ${interaction.user.tag}`);
+  if (!interaction.isChatInputCommand()) return;
 
-    if (
-      (interaction.commandName === "clockout" || interaction.commandName === "clockin") &&
-      CLOCK_CHANNEL_ID &&
-      interaction.channelId !== CLOCK_CHANNEL_ID
-    ) {
+  const userId = interaction.user.id;
+  const mention = `<@${userId}>`;
+  const now = new Date();
+  const stamped = formatNY(now);
+
+  if (interaction.commandName === "clockout") {
+    const reason = interaction.options.getString("reason") || "—";
+    addEntry({
+      type: "OUT",
+      userId,
+      timestampISO: nowISO(),
+      stamped,
+      text: reason,
+    });
+    return interaction.reply(
+      `⏸️ ${mention} clocked out at **${stamped} (${TZ})**\nReason: ${reason}`
+    );
+  }
+
+  if (interaction.commandName === "clockin") {
+    const note = interaction.options.getString("note") || "—";
+    addEntry({
+      type: "IN",
+      userId,
+      timestampISO: nowISO(),
+      stamped,
+      text: note,
+    });
+    return interaction.reply(
+      `▶️ ${mention} clocked in at **${stamped} (${TZ})**\nNote: ${note}`
+    );
+  }
+
+  if (interaction.commandName === "archive") {
+    if (!isAdmin(userId)) {
       return interaction.reply({
-        content: `Please use this command in the designated clock channel.`,
+        content: "You don’t have permission.",
         ephemeral: true,
       });
     }
 
-    const userId = interaction.user.id;
-    const mention = `<@${userId}>`;
-    const displayName = interaction.member?.displayName || interaction.user.globalName || interaction.user.username;
-    const now = new Date();
-    const stamped = formatNY(now);
+    const data = loadData().filter((e) =>
+      sameNYDate(new Date(e.timestampISO), now)
+    );
 
-    if (interaction.commandName === "clockout") {
-      const reason = interaction.options.getString("reason") || "";
-      const msg = `⏸️ ${mention} clocked out at **${stamped} (${TZ})**.\n${reason ? `Reason: ${reason}` : `Reason: (none)`}`;
-      addEntry({
-        type: "OUT",
-        userId,
-        displayName,
-        mention,
-        timestampISO: nowISO(),
-        stamped,
-        tz: TZ,
-        text: reason || "",
+    if (!data.length) {
+      return interaction.reply({
+        content: "No entries for today.",
+        ephemeral: true,
       });
-      return interaction.reply({ content: msg });
     }
 
-    if (interaction.commandName === "clockin") {
-      const note = interaction.options.getString("note") || "";
-      const data = loadData();
-      const lastOut = [...data].reverse().find(
-        (e) => e.userId === userId && e.type === "OUT" && sameNYDate(new Date(e.timestampISO), now)
+    const archiveChannel =
+      await interaction.guild.channels.fetch(ARCHIVE_CHANNEL_ID);
+
+    await archiveChannel.send(
+      `Clock Archive — ${formatNY(now)} (${TZ})`
+    );
+
+    for (const e of data) {
+      await archiveChannel.send(
+        `${e.type === "OUT" ? "⏸️" : "▶️"} <@${e.userId}> at ${e.stamped}\n${e.text}`
       );
-
-      let awayText = "";
-      if (lastOut) {
-        const ms = now.getTime() - new Date(lastOut.timestampISO).getTime();
-        const mins = Math.floor(ms / 60000);
-        const secs = Math.floor((ms % 60000) / 1000);
-        awayText = ` (away for ${mins}m ${secs}s)`;
-      }
-
-      const msg = `▶️ ${mention} clocked in at **${stamped} (${TZ})**${awayText}.\n${note ? `Note: ${note}` : `Note: (none)`}`;
-      addEntry({
-        type: "IN",
-        userId,
-        displayName,
-        mention,
-        timestampISO: nowISO(),
-        stamped,
-        tz: TZ,
-        text: note || "",
-      });
-      return interaction.reply({ content: msg });
     }
 
-    if (interaction.commandName === "archive") {
-      if (!isAdmin(userId)) {
-        return interaction.reply({ content: `You don't have permission to use this command.`, ephemeral: true });
-      }
-      if (!ARCHIVE_CHANNEL_ID || !CLOCK_CHANNEL_ID) {
-        return interaction.reply({ content: "Missing ARCHIVE_CHANNEL_ID or CLOCK_CHANNEL_ID in your env.", ephemeral: true });
-      }
-
-      await interaction.reply({ content: `Archiving today's clock messages...`, ephemeral: true });
-      const archiveChannel = await interaction.guild.channels.fetch(ARCHIVE_CHANNEL_ID);
-      const clockChannel = await interaction.guild.channels.fetch(CLOCK_CHANNEL_ID);
-      const data = loadData();
-      const todayEntries = data.filter((e) => sameNYDate(new Date(e.timestampISO), now));
-
-      if (todayEntries.length === 0) {
-        return interaction.followUp({ content: `No clock data found for today.`, ephemeral: true });
-      }
-
-      const header = `**Clock Archive — ${formatNY(now)} (${TZ})**`;
-      const lines = todayEntries.map((e) => {
-        const icon = e.type === "OUT" ? "⏸️" : "▶️";
-        const label = e.type === "OUT" ? "clocked out" : "clocked in";
-        const extra = e.type === "OUT" ? `Reason: ${e.text || "(none)"}` : `Note: ${e.text || "(none)"}`;
-        return `${icon} **${e.displayName}** (${e.mention}) ${label} at **${e.stamped} (${TZ})**\n${extra}`;
-      });
-
-      const chunks = [];
-      let current = header + "\n\n";
-      for (const line of lines) {
-        if ((current + "\n\n" + line).length > 1900) {
-          chunks.push(current);
-          current = header + "\n\n" + line;
-        } else {
-          current += (current.endsWith("\n\n") ? "" : "\n\n") + line;
-        }
-      }
-      if (current.trim()) chunks.push(current);
-
-      for (const chunk of chunks) {
-        await archiveChannel.send(chunk);
-      }
-
-      let deleted = 0;
-      let beforeId = undefined;
-      for (let rounds = 0; rounds < 10; rounds++) {
-        const fetched = await clockChannel.messages.fetch({ limit: 100, before: beforeId });
-        if (fetched.size === 0) break;
-        const arr = [...fetched.values()];
-        beforeId = arr[arr.length - 1].id;
-        for (const msg of arr) {
-          if (msg.author?.id === client.user.id && sameNYDate(msg.createdAt, now)) {
-            try { await msg.delete(); deleted++; } catch {}
-          }
-        }
-      }
-      return interaction.followUp({ content: `Archive complete. Archived ${todayEntries.length} entries. Deleted ${deleted} messages.`, ephemeral: true });
-    }
-  } catch (err) {
-    console.error(err);
-    if (interaction.isRepliable()) {
-      try { await interaction.reply({ content: "Something went wrong. Check the console logs.", ephemeral: true }); } catch {}
-    }
+    return interaction.reply({
+      content: "Archive complete.",
+      ephemeral: true,
+    });
   }
 });
 
-console.log("Starting bot...");
-const token = process.env.DISCORD_TOKEN;
-if (!token) {
-  console.error("Missing DISCORD_TOKEN in .env");
-  process.exit(1);
-}
-client.login(token).catch(err => console.error("Failed to login:", err));
+client.login(process.env.DISCORD_TOKEN);

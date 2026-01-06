@@ -88,5 +88,29 @@
     "stamped": "Jan 05, 2026, 12:11 AM",
     "tz": "America/New_York",
     "text": "Clocking out for the night and heading offline. I’ll be available again tomorrow. Please allow up to 24 hours for responses if anything comes up."
+  },
+  {
+    "type": "OUT",
+    "userId": "594190879556763681",
+    "displayName": "Dark Evil",
+    "mention": "<@594190879556763681>",
+    "timestampISO": "2026-01-05T21:47:04.516Z",
+    "stamped": "Jan 05, 2026, 4:47 PM",
+    "tz": "America/New_York",
+    "text": "test"
+  },
+  {
+    "type": "OUT",
+    "userId": "594190879556763681",
+    "timestampISO": "2026-01-06T01:52:09.970Z",
+    "stamped": "Jan 05, 2026, 8:52 PM",
+    "text": "test"
+  },
+  {
+    "type": "IN",
+    "userId": "594190879556763681",
+    "timestampISO": "2026-01-06T01:52:22.147Z",
+    "stamped": "Jan 05, 2026, 8:52 PM",
+    "text": "i am back"
   }
 ]
