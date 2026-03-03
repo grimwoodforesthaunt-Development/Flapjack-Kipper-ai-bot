@@ -1,116 +1,16 @@
 [
   {
     "type": "IN",
-    "userId": "1454244929609138268",
-    "displayName": "grimwood forest",
-    "mention": "<@1454244929609138268>",
-    "timestampISO": "2026-01-03T23:48:31.793Z",
-    "stamped": "Jan 03, 2026, 6:48 PM",
-    "tz": "America/New_York",
-    "text": "lol"
+    "userId": "594190879556763681",
+    "timestampISO": "2026-03-02T04:20:22.145Z",
+    "stamped": "Mar 01, 2026, 11:20 PM",
+    "text": "hi"
   },
   {
     "type": "OUT",
     "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-03T23:51:53.169Z",
-    "stamped": "Jan 03, 2026, 6:51 PM",
-    "tz": "America/New_York",
-    "text": "test"
-  },
-  {
-    "type": "IN",
-    "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-03T23:52:15.449Z",
-    "stamped": "Jan 03, 2026, 6:52 PM",
-    "tz": "America/New_York",
-    "text": "i am back"
-  },
-  {
-    "type": "OUT",
-    "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-04T00:02:17.887Z",
-    "stamped": "Jan 03, 2026, 7:02 PM",
-    "tz": "America/New_York",
-    "text": "going to take a break  and afk"
-  },
-  {
-    "type": "IN",
-    "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-04T00:03:06.876Z",
-    "stamped": "Jan 03, 2026, 7:03 PM",
-    "tz": "America/New_York",
-    "text": "i am back and ready"
-  },
-  {
-    "type": "OUT",
-    "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-04T00:26:36.881Z",
-    "stamped": "Jan 03, 2026, 7:26 PM",
-    "tz": "America/New_York",
-    "text": "Taking a short break and will be AFK while playing other games. Response times may be delayed for a few hours, but I’ll reply as soon as I’m able."
-  },
-  {
-    "type": "IN",
-    "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-04T02:14:45.451Z",
-    "stamped": "Jan 03, 2026, 9:14 PM",
-    "tz": "America/New_York",
-    "text": "Back online and available. I’ll be around until 12–1 AM and will respond as needed."
-  },
-  {
-    "type": "OUT",
-    "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-04T05:32:52.469Z",
-    "stamped": "Jan 04, 2026, 12:32 AM",
-    "tz": "America/New_York",
-    "text": "Clocking out for the night and heading offline. I’ll be available again tomorrow. Please allow up to 24 hours for responses if anything comes up."
-  },
-  {
-    "type": "OUT",
-    "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-05T05:11:58.352Z",
-    "stamped": "Jan 05, 2026, 12:11 AM",
-    "tz": "America/New_York",
-    "text": "Clocking out for the night and heading offline. I’ll be available again tomorrow. Please allow up to 24 hours for responses if anything comes up."
-  },
-  {
-    "type": "OUT",
-    "userId": "594190879556763681",
-    "displayName": "Dark Evil",
-    "mention": "<@594190879556763681>",
-    "timestampISO": "2026-01-05T21:47:04.516Z",
-    "stamped": "Jan 05, 2026, 4:47 PM",
-    "tz": "America/New_York",
-    "text": "test"
-  },
-  {
-    "type": "OUT",
-    "userId": "594190879556763681",
-    "timestampISO": "2026-01-06T01:52:09.970Z",
-    "stamped": "Jan 05, 2026, 8:52 PM",
-    "text": "test"
-  },
-  {
-    "type": "IN",
-    "userId": "594190879556763681",
-    "timestampISO": "2026-01-06T01:52:22.147Z",
-    "stamped": "Jan 05, 2026, 8:52 PM",
-    "text": "i am back"
+    "timestampISO": "2026-03-02T04:20:35.883Z",
+    "stamped": "Mar 01, 2026, 11:20 PM",
+    "text": "done for the day lol"
   }
 ]
