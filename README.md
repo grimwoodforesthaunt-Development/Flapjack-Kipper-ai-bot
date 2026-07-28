@@ -12,6 +12,7 @@ This repository contains the source code needed to create and operate your own v
 
 You must create your own Discord application, invite your own bot, configure your own server roles and channels, and provide your own private environment variables.
 
+ this was mode by Developed and maintained by officialdarkevilpark.
 ---
 
 # 📋 Table of Contents
