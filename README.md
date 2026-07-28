@@ -1,87 +1,103 @@
-# 📅 Grimwood Schedule Board
+# 🤖 Flapjack Kipper AI
 
 ## Everything You Need to Know
 
-Grimwood Schedule Board is a Discord scheduling and staff-management bot originally created for Grimwood Forest Creative & Operations.
+Flapjack Kipper AI is an open-source Discord AI assistant originally developed for **Grimwood Forest Creative & Operations**.
 
-It allows authorized leadership members to organize staff schedules, assign shifts, mark staff members as off, review daily and monthly schedules, receive schedule requests, and maintain a clear record of scheduling changes.
+Unlike a traditional Discord bot, Flapjack Kipper AI integrates with **Google's Gemini AI** to provide intelligent conversations, answer questions, assist users, and perform AI-powered tasks directly within a Discord server.
 
-This repository contains the source code needed to create and operate your own version of Grimwood Schedule Board.
+Originally created as an internal assistant for the Grimwood Forest community, the project has been released as open source so developers, communities, and organizations can customize it for their own Discord servers.
 
-> **Important:** This repository provides the source code only. It does not provide access to the original Grimwood Forest Discord server, private staff information, original Discord bot account, original bot token, private channels, hosting account, or private environment variables.
+This repository contains the complete source code required to create and operate your own version of Flapjack Kipper AI.
 
-You must create your own Discord application, invite your own bot, configure your own server roles and channels, and provide your own private environment variables.
+> **Important:** This repository only contains the source code. It does **not** include the original Discord server, Discord bot account, Bot Token, Gemini API Key, Replit Secrets, private configuration files, conversation history, or internal organizational data.
 
- this was mode by Developed and maintained by officialdarkevilpark.
+To use this project, you must create your own Discord Application, create your own Discord Bot, obtain your own Gemini API Key, configure your own Discord server, and supply your own private environment variables.
+
+Originally developed and maintained by **officialdarkevilpark**.
+
 ---
 
 # 📋 Table of Contents
 
-- [What Grimwood Schedule Board Does](#what-grimwood-schedule-board-does)
-- [Important Security Information](#important-security-information)
-- [What You Need](#what-you-need)
-- [Create a Discord Application](#create-a-discord-application)
-- [Create the Bot Account](#create-the-bot-account)
-- [Find the Bot Token](#find-the-bot-token)
-- [Find the Application ID](#find-the-application-id)
-- [Configure the Bot](#configure-the-bot)
-- [Invite the Bot](#invite-the-bot)
-- [Recommended Discord Permissions](#recommended-discord-permissions)
-- [Enable Discord Developer Mode](#enable-discord-developer-mode)
-- [Create the Required Discord Roles](#create-the-required-discord-roles)
-- [Create the Required Discord Channels](#create-the-required-discord-channels)
-- [Environment Variables](#environment-variables)
-- [Environment Variable Explanations](#environment-variable-explanations)
-- [Project Files Explained](#project-files-explained)
-- [Importing the Project Into Replit](#importing-the-project-into-replit)
-- [Adding Secrets in Replit](#adding-secrets-in-replit)
-- [Running the Bot in Replit](#running-the-bot-in-replit)
-- [Using Another Code Editor](#using-another-code-editor)
-- [Installing Dependencies](#installing-dependencies)
-- [Starting the Bot](#starting-the-bot)
-- [Scheduling Commands](#scheduling-commands)
-- [Leadership Permissions](#leadership-permissions)
-- [Schedule Channels](#schedule-channels)
-- [Date and Time Format](#date-and-time-format)
-- [How Schedule Data Works](#how-schedule-data-works)
-- [Updating the Bot](#updating-the-bot)
-- [Troubleshooting](#troubleshooting)
-- [Testing Checklist](#testing-checklist)
-- [Privacy and Staff Information](#privacy-and-staff-information)
-- [Credits](#credits)
-- [Disclaimer](#disclaimer)
-- [Official Resources](#official-resources)
+- What Flapjack Kipper AI Does
+- Features
+- Important Security Information
+- What You Need
+- Creating a Discord Application
+- Creating the Discord Bot
+- Finding the Bot Token
+- Finding the Client ID
+- Configuring the Bot
+- Inviting the Bot
+- Discord Gateway Intents
+- Recommended Discord Permissions
+- Enable Discord Developer Mode
+- Creating the Required Discord Channels
+- Creating Leadership Permissions
+- Environment Variables
+- Environment Variable Explanations
+- Project Files Explained
+- Creating a Google AI Studio Project
+- Obtaining a Gemini API Key
+- Choosing a Gemini Model
+- Importing into Replit
+- Adding Replit Secrets
+- Running the Bot
+- Running Locally with Node.js
+- Installing Dependencies
+- AI Conversation Workflow
+- Leadership Permissions
+- AI Logging
+- Troubleshooting
+- Testing Checklist
+- Privacy
+- Customization
+- Credits
+- Disclaimer
+- Official Resources
 
 ---
 
-# What Grimwood Schedule Board Does
+# What Flapjack Kipper AI Does
 
-Grimwood Schedule Board is designed to organize staff scheduling inside a Discord server.
+Flapjack Kipper AI is an AI-powered Discord assistant that combines Discord with Google's Gemini large language model.
 
 Depending on the version of the source code included in this repository, the bot may support:
 
-- Adding staff members to the scheduling system
-- Removing staff members from the scheduling system
-- Viewing the current staff list
-- Assigning work shifts
-- Marking staff members as off
-- Removing scheduled shifts
-- Viewing one day's schedule
-- Viewing an entire month's schedule
-- Posting the daily schedule
-- Posting today's schedule automatically or manually
-- Posting a monthly schedule
-- Recording scheduling changes
-- Receiving schedule requests
-- Restricting commands to leadership
-- Recognizing leadership through Discord roles
-- Recognizing approved users through direct Discord User IDs
-- Operating in one selected Discord server
-- Displaying schedules in organized Discord embeds
-- Using Eastern Time or another configured timezone
-- Running a small web service for hosting or uptime monitoring
+- AI conversations
+- Question answering
+- Intelligent responses
+- Leadership tools
+- AI request logging
+- Dedicated AI discussion channels
+- Administrative permissions
+- Discord slash commands
+- Private logging
+- Organization-specific prompts
+- Community assistance
+- Knowledge-based conversations
+- Future AI integrations
 
-The exact behavior and available commands depend on the current version of `index.js`.
+The exact features available depend on the current version of `index.js`.
+
+---
+
+# Features
+
+Depending on the included source code, Flapjack Kipper AI may provide:
+
+- 🤖 AI-powered conversations
+- 💬 Natural language responses
+- 🧠 Google Gemini integration
+- 📝 AI conversation logging
+- 🔒 Leadership permission controls
+- 📂 Dedicated AI Hub channel
+- 📜 Administrative logs
+- ⚙️ Easy configuration using environment variables
+- 🌐 Replit compatibility
+- 💻 Local Node.js support
+- 🛡️ Open-source customization
 
 ---
 
@@ -89,296 +105,265 @@ The exact behavior and available commands depend on the current version of `inde
 
 Never publicly share:
 
-- Your Discord bot token
-- Your private `.env` file
-- Your Replit Secrets
-- Private staff schedules
-- Private Discord User IDs when you do not intend to publish them
-- Private channel IDs
-- Private organizational information
+- Discord Bot Token
+- Gemini API Key
+- Private `.env` file
+- Replit Secrets
+- Private Discord IDs
+- Internal logs
+- Organization-specific prompts
+- Private AI conversations
 
-Your Discord bot token works like a password.
+Your Discord Bot Token and Gemini API Key should always remain private.
 
-Anyone who obtains the token may be able to log in as your bot.
+Anyone who gains access to either credential may be able to operate your bot or consume your AI usage quota.
 
-Never place your real token:
+Never place your credentials:
 
-- In this README
-- Directly inside `index.js`
-- In a public Discord message
-- In a screenshot
-- In a public GitHub repository
-- In a support request
-- In a public `.env` file
+- Inside this README
+- Inside `index.js`
+- Inside GitHub commits
+- In screenshots
+- Inside Discord messages
+- Inside public repositories
 
-If your token is accidentally exposed:
+If your Bot Token becomes exposed:
 
 1. Open the Discord Developer Portal.
-2. Select your Discord application.
-3. Open the **Bot** section.
-4. Reset the token.
-5. Copy the new token.
-6. Replace the old token in Replit Secrets or your private `.env`.
-7. Restart the bot.
+2. Open your application.
+3. Select **Bot**.
+4. Reset the Bot Token.
+5. Update your private `.env` file or Replit Secrets.
+6. Restart the bot.
+
+If your Gemini API Key becomes exposed:
+
+1. Open Google AI Studio.
+2. Generate a new API Key.
+3. Replace the old key in your environment variables.
+4. Delete the compromised key if it is no longer needed.
 
 ---
 
 # What You Need
 
-Before using Grimwood Schedule Board, you need:
+Before running Flapjack Kipper AI you will need:
 
 - A Discord account
 - A Discord server
-- Permission to add bots to the server
-- Permission to create roles and channels
-- A Discord application
-- A Discord bot account
-- The files from this repository
-- A Node.js-compatible environment
+- Administrator permissions
+- A Discord Application
+- A Discord Bot
+- A Google AI Studio account
+- A Gemini API Key
+- Node.js
+- npm
 - Internet access
-- A place to keep the bot running
+- The source code from this repository
 
-You may run the bot using:
+Recommended hosting options include:
 
 - Replit
 - Visual Studio Code
-- Another Node.js editor
-- A hosting provider
 - Your own computer
-- Your own server
+- VPS hosting
+- Any Node.js-compatible hosting provider
 
-Replit is recommended for beginners because the project files, console, packages, Secrets, and Run button are available in one place.
+Replit is recommended for beginners because it provides project files, package management, environment variables, and a built-in console in one workspace.
 
 ---
 
-# Useful Links
+# Useful Resources
 
-Discord Developer Portal:
-
-https://discord.com/developers/home
-
-Discord Applications:
+Discord Developer Portal
 
 https://discord.com/developers/applications
 
-Replit:
+Google AI Studio
 
-https://replit.com/
+https://aistudio.google.com/
 
-Replit Import:
+Google Gemini Documentation
 
-https://replit.com/import
+https://ai.google.dev/
 
-GitHub:
+GitHub
 
-https://github.com/
+https://github.com
 
-Node.js:
+Replit
 
-https://nodejs.org/
+https://replit.com
+
+Node.js
+
+https://nodejs.org
 
 ---
 
 # Create a Discord Application
 
-The first step is creating a Discord application.
+Before using Flapjack Kipper AI, create a Discord Application.
 
-1. Visit:
-
-   https://discord.com/developers/home
-
+1. Visit the Discord Developer Portal.
 2. Sign in with your Discord account.
+3. Select **New Application**.
+4. Enter an application name.
 
-3. Open the **Applications** page.
+Recommended:
 
-4. Select **New Application**, **Create Application**, or the current application-creation option.
-
-5. Enter the application name.
-
-The recommended name is:
-
-```text
-Grimwood Schedule Board
+```
+Flapjack Kipper AI
 ```
 
-You may use another name if you are creating your own customized version.
+5. Select **Create**.
 
-6. Accept Discord's required terms or confirmation checkbox.
+Your Discord Application will contain:
 
-7. Select **Create**.
-
-The Discord application is the main container for:
-
-- The bot account
-- The bot token
-- The Application ID
-- Installation settings
-- OAuth2 settings
-- Slash commands
+- Bot Account
+- Application ID
+- OAuth2 Configuration
+- Slash Commands
+- Installation Settings
 - Gateway Intents
-- Bot permissions
 
 ---
 
-# Create the Bot Account
+# Create the Discord Bot
 
 After creating the application:
 
-1. Open the application.
-2. Select **Bot** from the left menu.
-3. Select **Add Bot**, **Build a Bot**, or the current equivalent.
+1. Open your application.
+2. Select **Bot**.
+3. Select **Add Bot**.
 4. Confirm the action.
-5. Enter the bot's display name.
+5. Give your bot a name.
 6. Upload a bot icon if desired.
-7. Save the changes.
+7. Save your changes.
 
-The application and bot account are connected, but they are not exactly the same thing.
+The application and the bot account are connected, but they are not the same thing.
 
-- The **application** holds the settings.
-- The **bot account** appears in your Discord server.
-- The **token** allows the source code to log in as the bot.
+- The application stores configuration.
+- The bot account appears inside Discord.
+- The Bot Token allows the source code to log in.
 
 ---
 
 # Find the Bot Token
 
-Inside the Discord Developer Portal:
+Inside the **Bot** page:
 
-1. Open your Grimwood Schedule Board application.
-2. Select **Bot**.
-3. Locate the Token section.
-4. Select **Reset Token**, **View Token**, or **Copy Token**.
-5. Complete any required verification.
-6. Copy the token.
-7. Store it privately.
+Locate the **Token** section.
 
-The environment variable is:
+Copy or reset the token.
+
+Store it privately.
+
+Your environment variable should look like:
 
 ```env
-SCHEDULE_BOARD_TOKEN=YOUR_BOT_TOKEN
-```
-
-Do not enter the variable name twice.
-
-Incorrect:
-
-```env
-SCHEDULE_BOARD_TOKEN=SCHEDULE_BOARD_TOKEN=YOUR_BOT_TOKEN
+DISCORD_TOKEN=YOUR_BOT_TOKEN
 ```
 
 Correct:
 
 ```env
-SCHEDULE_BOARD_TOKEN=YOUR_BOT_TOKEN
+DISCORD_TOKEN=YOUR_BOT_TOKEN
+```
+
+Incorrect:
+
+```env
+DISCORD_TOKEN=DISCORD_TOKEN=YOUR_BOT_TOKEN
 ```
 
 ---
 
-# Find the Application ID
+# Find the Client ID
 
-The Application ID is also called the Client ID.
+Open:
 
-To find it:
+**General Information**
 
-1. Open your application.
-2. Select **General Information**.
-3. Locate **Application ID**.
-4. Copy the number.
+Locate:
 
-Place it in:
+**Application ID**
 
-```env
-SCHEDULE_BOARD_CLIENT_ID=YOUR_CLIENT_ID
-```
+Copy the number.
 
-Example format:
+Store it as:
 
 ```env
-SCHEDULE_BOARD_CLIENT_ID=123456789012345678
+CLIENT_ID=YOUR_CLIENT_ID
 ```
 
-The Application ID must belong to the same Discord application as the bot token.
+The Client ID should belong to the same Discord Application as your Bot Token.
 
 ---
 
 # Configure the Bot
 
-Open the **Bot** section of the Discord Developer Portal.
-
-Depending on the included code, Grimwood Schedule Board may require Gateway Intents.
-
-Possible intents include:
+Depending on the source code, Flapjack Kipper AI may require the following Gateway Intents:
 
 - Server Members Intent
 - Message Content Intent
-- Presence Intent
 
-A scheduling bot may require **Server Members Intent** if it searches for staff members, reads member information, or verifies member roles.
+Only enable the intents required by your version of the bot.
 
-A slash-command-only bot may not require Message Content Intent unless it also reads normal messages.
-
-Only enable the intents required by the source code.
-
-Remember to save your changes.
+Remember to save your changes before leaving the Developer Portal.
 
 ---
 
 # Invite the Bot
 
-Discord applications commonly use the **Installation** page to generate an installation link.
+Open the **Installation** page.
 
-1. Open the Discord application.
-2. Select **Installation**.
-3. Enable installation to a Discord server.
-4. Add the required scopes.
+Use the following scopes:
 
-The bot normally needs:
+- bot
+- applications.commands
 
-```text
-bot
-applications.commands
-```
+Invite the bot to your Discord server.
 
-The `bot` scope adds the bot to your server.
+The bot will remain offline until the source code is running.
 
-The `applications.commands` scope allows Discord slash commands to appear.
+---
 
-5. Choose the necessary permissions.
-6. Copy the installation link.
-7. Open the link.
-8. Select your server.
-9. Review the permissions.
-10. Select **Authorize**.
-11. Complete the verification challenge if Discord displays one.
+# Discord Gateway Intents
 
-The bot may remain offline until its code is running.
+Many AI bots require Gateway Intents to properly function.
+
+Common intents include:
+
+- Server Members Intent
+- Message Content Intent
+
+These allow the bot to:
+
+- Identify server members
+- Read messages when required
+- Respond appropriately
+- Process AI requests
+
+Only enable the intents that your version of the project actually uses.
 
 ---
 
 # Recommended Discord Permissions
 
-The exact permissions depend on the version of the source code.
-
-Grimwood Schedule Board may require:
+Recommended permissions include:
 
 - View Channels
 - Send Messages
-- Embed Links
 - Read Message History
-- Use Application Commands
-- Add Reactions
+- Embed Links
 - Attach Files
-- Manage Messages, if the bot removes or updates messages
-- Manage Threads, if scheduling requests use threads
-- Create Public Threads, if supported
-- Create Private Threads, if supported
-- Send Messages in Threads
-- Manage Roles, only if the bot changes staff roles
-- Manage Nicknames, only if the code changes nicknames
+- Use Slash Commands
+- Add Reactions
 
-Administrator permission may be used during testing, but it gives the bot complete access to nearly all server permissions.
+Administrator permission may be useful while testing.
 
-For a permanent public or production server, grant only the permissions the bot genuinely requires.
+For production servers, grant only the permissions required by the bot.
 
 ---
 
@@ -386,13 +371,11 @@ For a permanent public or production server, grant only the permissions the bot 
 
 Developer Mode allows you to copy Discord IDs.
 
-In Discord:
+Enable it through:
 
-1. Open **User Settings**.
-2. Select **Advanced**.
-3. Enable **Developer Mode**.
+User Settings → Advanced → Developer Mode
 
-After enabling Developer Mode, you can copy:
+Once enabled you can copy:
 
 - Server IDs
 - Channel IDs
@@ -400,1208 +383,687 @@ After enabling Developer Mode, you can copy:
 - Role IDs
 - Message IDs
 
-Discord IDs are long numbers similar to:
-
-```text
-123456789012345678
-```
-
----
-
-# Create the Required Discord Roles
-
-Grimwood Schedule Board uses leadership roles to control restricted commands.
-
-The original role structure included:
-
-```text
-Chairman
-Vice Chairman
-Chief Administrative Officer
-```
-
-You may create the same roles or adapt the bot for your own organization.
-
-## Chairman Role
-
-Create a Discord role named:
-
-```text
-Chairman
-```
-
-To copy the Role ID:
-
-1. Open **Server Settings**.
-2. Select **Roles**.
-3. Locate the Chairman role.
-4. Right-click the role.
-5. Select **Copy Role ID**.
-
-Add it to:
-
-```env
-CHAIRMAN_ROLE_ID=YOUR_CHAIRMAN_ROLE_ID
-```
-
-## Vice Chairman Role
-
-Create a role named:
-
-```text
-Vice Chairman
-```
-
-Copy its Role ID and add it to:
-
-```env
-VICE_CHAIRMAN_ROLE_ID=YOUR_VICE_CHAIRMAN_ROLE_ID
-```
-
-## Chief Administrative Officer Role
-
-Create a role named:
-
-```text
-Chief Administrative Officer
-```
-
-Copy its Role ID and add it to:
-
-```env
-CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID=YOUR_CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID
-```
-
-The exact role names shown in Discord may be changed, but the IDs in the environment variables must point to the correct roles.
+These IDs are required when configuring your environment variables.
 
 ---
 
 # Create the Required Discord Channels
 
-The original Grimwood Schedule Board system used three primary channels.
+The original project used two primary channels.
 
-## Schedule Board Channel
-
-Suggested channel name:
-
-```text
-schedule-board
-```
-
-This channel is used to display:
-
-- Daily schedules
-- Monthly schedules
-- Staff assignments
-- Schedule updates
-- Official schedule board messages
-
-Copy the Channel ID and place it in:
-
-```env
-SCHEDULE_BOARD_CHANNEL_ID=YOUR_SCHEDULE_BOARD_CHANNEL_ID
-```
-
-## Schedule Log Channel
+## AI Hub
 
 Suggested channel name:
 
-```text
-schedule-log
+```
+ai-hub
 ```
 
-This channel records administrative activity such as:
+This is where members interact with Flapjack Kipper AI.
 
-- Staff added
-- Staff removed
-- Shift assigned
-- Shift removed
-- Staff marked off
-- Schedule changed
-- Schedule posted
-- Leadership actions
-- System events
-
-This channel should normally be private and visible only to authorized leadership.
-
-Copy the Channel ID and place it in:
+Store the Channel ID in:
 
 ```env
-SCHEDULE_LOG_CHANNEL_ID=YOUR_SCHEDULE_LOG_CHANNEL_ID
+AI_HUB_CHANNEL_ID=YOUR_AI_HUB_CHANNEL_ID
 ```
 
-## Schedule Requests Channel
+---
+
+## AI Logs
 
 Suggested channel name:
 
-```text
-schedule-requests
+```
+ai-logs
 ```
 
-This channel may be used for:
+This private channel stores AI-related logs and administrative events.
 
-- Availability requests
-- Time-off requests
-- Shift-change requests
-- Schedule questions
-- Rescheduling requests
-- Leadership responses
-
-Copy the Channel ID and place it in:
+Store the Channel ID in:
 
 ```env
-SCHEDULE_REQUESTS_CHANNEL_ID=YOUR_SCHEDULE_REQUESTS_CHANNEL_ID
+AI_LOGS_CHANNEL_ID=YOUR_AI_LOGS_CHANNEL_ID
 ```
+
+Only trusted leadership members should have access to this channel.
+
+---
+
+# Create Leadership Permissions
+
+The original project used both Discord roles and approved User IDs to control administrative access.
+
+Create a leadership role.
+
+Copy its Role ID.
+
+Store it as:
+
+```env
+LEADERSHIP_ROLE_ID=YOUR_LEADERSHIP_ROLE_ID
+```
+
+Administrator overrides can also be configured using approved Discord User IDs.
+
+Those IDs are stored inside:
+
+```env
+LEADERSHIP_USER_IDS=YOUR_DISCORD_USER_ID
+```
+---
+
+# Creating a Google AI Studio Project
+
+Flapjack Kipper AI uses **Google Gemini** as its AI provider.
+
+Before the bot can generate responses, you must create a Google AI Studio project and obtain a Gemini API Key.
+
+Google AI Studio is Google's official platform for testing and integrating Gemini into applications.
+
+Visit:
+
+https://aistudio.google.com/
+
+Sign in using your Google Account.
+
+If prompted, accept Google's terms of service.
+
+Once signed in, you will have access to the AI Studio dashboard.
+
+---
+
+# Creating a Gemini API Key
+
+Inside Google AI Studio:
+
+1. Select **Get API Key**.
+2. Select **Create API Key**.
+3. Choose an existing Google Cloud project or allow AI Studio to create one.
+4. Generate the key.
+5. Copy the API Key immediately.
+
+Store the key somewhere safe.
+
+Once you leave the page, you should always be able to generate a new key if necessary, but you should avoid sharing your existing one.
+
+---
+
+# Protecting Your API Key
+
+Your Gemini API Key is private.
+
+Treat it exactly like a password.
+
+Never upload it to:
+
+- GitHub
+- Discord
+- Screenshots
+- README files
+- Public repositories
+- Videos
+- Livestreams
+
+Always store it in:
+
+- `.env`
+- Replit Secrets
+- Other secure environment variable systems
+
+Correct:
+
+```env
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+```
+
+Incorrect:
+
+```env
+GEMINI_API_KEY=AIzaSyExampleRealKey123456789
+```
+
+If you believe your API Key has been exposed:
+
+1. Return to Google AI Studio.
+2. Generate a new API Key.
+3. Replace the old key in your environment variables.
+4. Delete or revoke the exposed key if it is no longer needed.
+5. Restart the bot.
+
+---
+
+# Choosing a Gemini Model
+
+Gemini is available in multiple models.
+
+Your version of Flapjack Kipper AI uses the model specified by:
+
+```env
+GEMINI_MODEL=
+```
+
+For example:
+
+```env
+GEMINI_MODEL=gemini-2.5-flash
+```
+
+Different Gemini models may offer different capabilities, response speeds, context lengths, and pricing.
+
+Refer to the Google AI documentation for the latest list of supported models.
+
+If Google retires or renames a model, update the value in your environment variables accordingly.
 
 ---
 
 # Environment Variables
 
-Grimwood Schedule Board requires the following environment variables:
+Example:
 
 ```env
-SCHEDULE_BOARD_TOKEN=YOUR_BOT_TOKEN
-SCHEDULE_BOARD_CLIENT_ID=YOUR_CLIENT_ID
+DISCORD_TOKEN=YOUR_BOT_TOKEN
+CLIENT_ID=YOUR_CLIENT_ID
 GUILD_ID=YOUR_SERVER_ID
 
+AI_HUB_CHANNEL_ID=YOUR_AI_HUB_CHANNEL_ID
+AI_LOGS_CHANNEL_ID=YOUR_AI_LOGS_CHANNEL_ID
+
+LEADERSHIP_ROLE_ID=YOUR_LEADERSHIP_ROLE_ID
 LEADERSHIP_USER_IDS=YOUR_DISCORD_USER_ID
 
-CHAIRMAN_ROLE_ID=YOUR_CHAIRMAN_ROLE_ID
-VICE_CHAIRMAN_ROLE_ID=YOUR_VICE_CHAIRMAN_ROLE_ID
-CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID=YOUR_CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID
-
-SCHEDULE_BOARD_CHANNEL_ID=YOUR_SCHEDULE_BOARD_CHANNEL_ID
-SCHEDULE_LOG_CHANNEL_ID=YOUR_SCHEDULE_LOG_CHANNEL_ID
-SCHEDULE_REQUESTS_CHANNEL_ID=YOUR_SCHEDULE_REQUESTS_CHANNEL_ID
-
-PORT=3000
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
-The private file must be named exactly:
+The file must be named:
 
-```text
+```
 .env
 ```
 
-Do not name it:
-
-```text
-folder.env
-folder.evn
-env.txt
-.env.txt
-```
-
-A misspelled filename may prevent the bot from loading its settings.
+Never upload your real `.env` file to GitHub.
 
 ---
 
 # Environment Variable Explanations
 
-## `SCHEDULE_BOARD_TOKEN`
+## DISCORD_TOKEN
 
 ```env
-SCHEDULE_BOARD_TOKEN=YOUR_BOT_TOKEN
+DISCORD_TOKEN=YOUR_BOT_TOKEN
 ```
 
-This is the private token for the Grimwood Schedule Board Discord bot.
+The Bot Token allows the source code to authenticate with Discord.
 
-The code uses it to log in to Discord.
+Without this value, the bot cannot connect to Discord.
 
-Never publish it.
+Keep this value private.
 
 ---
 
-## `SCHEDULE_BOARD_CLIENT_ID`
+## CLIENT_ID
 
 ```env
-SCHEDULE_BOARD_CLIENT_ID=YOUR_CLIENT_ID
+CLIENT_ID=YOUR_CLIENT_ID
 ```
 
-This is the Discord Application ID.
+This is your Discord Application ID.
 
-The bot may use it to register slash commands for the correct Discord application.
+The bot uses this value when registering slash commands and identifying the application.
+
+To obtain it:
+
+1. Open the Discord Developer Portal.
+2. Open your application.
+3. Copy the **Application ID**.
 
 ---
 
-## `GUILD_ID`
+## GUILD_ID
 
 ```env
 GUILD_ID=YOUR_SERVER_ID
 ```
 
-This is the Discord Server ID.
+This is your Discord Server ID.
 
-Discord internally calls a server a **guild**.
+Discord internally refers to servers as **Guilds**.
 
-The code may use this ID to:
+The bot uses this value to know which server it should operate within.
 
-- Register commands in one server
-- Find server members
-- Locate roles
-- Locate channels
-- Restrict the bot to a selected server
-
-To obtain it:
-
-1. Enable Developer Mode.
-2. Right-click your Discord server.
-3. Select **Copy Server ID**.
+Enable Developer Mode to copy this ID.
 
 ---
 
-## `LEADERSHIP_USER_IDS`
+## AI_HUB_CHANNEL_ID
+
+```env
+AI_HUB_CHANNEL_ID=YOUR_AI_HUB_CHANNEL_ID
+```
+
+This is the primary channel where users interact with Flapjack Kipper AI.
+
+Depending on the version of the project, the AI may:
+
+- Answer questions
+- Respond to prompts
+- Assist members
+- Participate in AI conversations
+- Provide organization-specific responses
+
+Only users with permission to access this channel will be able to interact with the AI.
+
+---
+
+## AI_LOGS_CHANNEL_ID
+
+```env
+AI_LOGS_CHANNEL_ID=YOUR_AI_LOGS_CHANNEL_ID
+```
+
+This identifies the private logging channel.
+
+Depending on the source code, it may store:
+
+- AI requests
+- AI responses
+- Administrative actions
+- Startup events
+- Error messages
+- System diagnostics
+
+This channel should normally remain private and only be accessible to trusted leadership.
+
+---
+
+## LEADERSHIP_ROLE_ID
+
+```env
+LEADERSHIP_ROLE_ID=YOUR_LEADERSHIP_ROLE_ID
+```
+
+This Discord Role ID identifies members who have elevated permissions.
+
+Leadership members may receive access to administrative AI commands, configuration tools, or moderation features depending on the version of the bot.
+
+---
+
+## LEADERSHIP_USER_IDS
 
 ```env
 LEADERSHIP_USER_IDS=YOUR_DISCORD_USER_ID
 ```
 
-This identifies one or more Discord users who always have leadership access.
+This variable stores one or more approved Discord User IDs.
 
-This acts as a direct permission override.
+These users may receive administrative access even if Discord role permissions change.
 
-It may allow an authorized owner or administrator to use leadership commands even if:
+If multiple IDs are supported, separate them with commas.
 
-- Their role is changed
-- Their leadership role is temporarily removed
-- The Discord role system is misconfigured
-- A permission problem occurs
-
-For multiple users, the bot may support comma-separated IDs:
+Example:
 
 ```env
 LEADERSHIP_USER_IDS=111111111111111111,222222222222222222
 ```
 
-Check `index.js` to confirm the expected format.
+Refer to `index.js` to verify the supported format.
 
 ---
 
-## `CHAIRMAN_ROLE_ID`
+## GEMINI_API_KEY
 
 ```env
-CHAIRMAN_ROLE_ID=YOUR_CHAIRMAN_ROLE_ID
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 ```
 
-This identifies the Discord Chairman role.
+This is the credential used to communicate with Google's Gemini AI service.
 
-Members with this role may receive access to restricted scheduling commands.
+Every AI request made by the bot is authenticated using this API Key.
+
+If the key is missing, invalid, expired, or revoked, the bot will not be able to generate AI responses.
 
 ---
 
-## `VICE_CHAIRMAN_ROLE_ID`
+## GEMINI_MODEL
 
 ```env
-VICE_CHAIRMAN_ROLE_ID=YOUR_VICE_CHAIRMAN_ROLE_ID
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
-This identifies the Discord Vice Chairman role.
+This specifies which Gemini model the bot should use.
 
-Members with this role may receive access to restricted scheduling commands.
+Changing this value may affect:
+
+- Response speed
+- AI capabilities
+- Context window
+- Availability
+- Usage costs (if applicable)
+
+Use a model that is supported by your Google AI account and compatible with the version of the Google AI SDK used by this project.
 
 ---
 
-## `CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID`
+# Correct .env Example
 
 ```env
-CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID=YOUR_CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID
-```
+DISCORD_TOKEN=YOUR_BOT_TOKEN
+CLIENT_ID=YOUR_CLIENT_ID
+GUILD_ID=YOUR_SERVER_ID
 
-This identifies the Chief Administrative Officer role.
+AI_HUB_CHANNEL_ID=YOUR_AI_HUB_CHANNEL_ID
+AI_LOGS_CHANNEL_ID=YOUR_AI_LOGS_CHANNEL_ID
 
-Members with this role may receive access to restricted scheduling commands.
-
----
-
-## `SCHEDULE_BOARD_CHANNEL_ID`
-
-```env
-SCHEDULE_BOARD_CHANNEL_ID=YOUR_SCHEDULE_BOARD_CHANNEL_ID
-```
-
-This identifies the official Discord channel where schedule-board posts are sent.
-
----
-
-## `SCHEDULE_LOG_CHANNEL_ID`
-
-```env
-SCHEDULE_LOG_CHANNEL_ID=YOUR_SCHEDULE_LOG_CHANNEL_ID
-```
-
-This identifies the private channel used to record schedule changes and administrative actions.
-
----
-
-## `SCHEDULE_REQUESTS_CHANNEL_ID`
-
-```env
-SCHEDULE_REQUESTS_CHANNEL_ID=YOUR_SCHEDULE_REQUESTS_CHANNEL_ID
-```
-
-This identifies the channel used for staff scheduling requests and related communication.
-
----
-
-## `PORT`
-
-```env
-PORT=3000
-```
-
-This is the port used by the bot's small web server.
-
-A web server may be included so that:
-
-- A hosting provider can detect that the application is running
-- An uptime service can open a web address
-- Replit can expose a public application URL
-- The project can respond to basic health checks
-
-Unless your hosting provider tells you to change it, leave it as:
-
-```env
-PORT=3000
-```
-
-Some hosting services automatically provide a port through their own environment variables. The source code may use the hosting provider's assigned port before falling back to `3000`.
-
----
-
-# Correct `.env` Example
-
-```env
-SCHEDULE_BOARD_TOKEN=YOUR_PRIVATE_BOT_TOKEN
-SCHEDULE_BOARD_CLIENT_ID=YOUR_APPLICATION_ID
-GUILD_ID=YOUR_DISCORD_SERVER_ID
-
+LEADERSHIP_ROLE_ID=YOUR_LEADERSHIP_ROLE_ID
 LEADERSHIP_USER_IDS=YOUR_DISCORD_USER_ID
 
-CHAIRMAN_ROLE_ID=YOUR_CHAIRMAN_ROLE_ID
-VICE_CHAIRMAN_ROLE_ID=YOUR_VICE_CHAIRMAN_ROLE_ID
-CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID=YOUR_CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID
-
-SCHEDULE_BOARD_CHANNEL_ID=YOUR_SCHEDULE_BOARD_CHANNEL_ID
-SCHEDULE_LOG_CHANNEL_ID=YOUR_SCHEDULE_LOG_CHANNEL_ID
-SCHEDULE_REQUESTS_CHANNEL_ID=YOUR_SCHEDULE_REQUESTS_CHANNEL_ID
-
-PORT=3000
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
-Do not include spaces around the equals signs.
+Never include spaces around the equals sign.
 
-Recommended:
+Correct:
 
 ```env
-GUILD_ID=123456789012345678
+CLIENT_ID=123456789012345678
 ```
 
-Avoid:
+Incorrect:
 
 ```env
-GUILD_ID = 123456789012345678
+CLIENT_ID = 123456789012345678
 ```
-
 ---
 
 # Project Files Explained
 
-## `index.js`
+Understanding the project structure will make it easier to customize, troubleshoot, and maintain Flapjack Kipper AI.
 
-```text
-index.js
-```
-
-This is the main source-code file.
-
-It may contain:
-
-- Discord client configuration
-- Bot login
-- Slash-command registration
-- Staff management
-- Schedule assignment
-- Schedule removal
-- Days-off management
-- Schedule posting
-- Permission checks
-- Role checks
-- User-ID overrides
-- Channel checks
-- Schedule logs
-- Date formatting
-- Data storage
-- Web server code
-- Error handling
-
-This is normally the main file that Node.js runs.
+Below are the most common files included in this repository.
 
 ---
 
-## `package.json`
+## index.js
 
-```text
-package.json
-```
+The `index.js` file is the heart of the project.
 
-This file describes the Node.js project.
+This file contains the primary source code that controls how Flapjack Kipper AI operates.
 
-It may include:
+Depending on the version of the project, `index.js` may handle:
+
+- Logging into Discord
+- Connecting to Google's Gemini AI
+- Registering slash commands
+- Processing AI prompts
+- Sending prompts to Gemini
+- Receiving AI responses
+- Posting replies back into Discord
+- Leadership permission checks
+- Logging AI activity
+- Error handling
+- Startup events
+- Configuration loading
+- Channel validation
+
+Most users will never need to modify this file unless they want to add new features or customize the bot's behavior.
+
+---
+
+## package.json
+
+The `package.json` file contains information about the project itself.
+
+It includes:
 
 - Project name
-- Project version
-- Required npm packages
-- Start commands
-- Runtime information
-- Project metadata
+- Version
+- Description
+- Author
+- Required dependencies
+- Start scripts
+- npm configuration
 
-Do not delete this file.
+It also tells npm which packages need to be installed before the bot can run.
 
----
-
-## `package-lock.json`
-
-```text
-package-lock.json
-```
-
-This records the exact package versions installed by npm.
-
-It helps keep installations consistent.
-
-Do not manually edit it unless you understand npm package management.
+Do not delete or rename this file.
 
 ---
 
-## `.env`
+## package-lock.json
 
-```text
-.env
-```
+This file is automatically generated by npm.
 
-This is the private configuration file.
+It records the exact versions of every installed dependency.
 
-It stores:
+Keeping this file helps ensure that other users install the same versions of packages that were used during development.
 
-- Bot token
-- Application ID
+Normally, you should leave this file unchanged unless dependencies are intentionally updated.
+
+---
+
+## .env
+
+The `.env` file stores all private configuration values used by the bot.
+
+Examples include:
+
+- Discord Bot Token
+- Client ID
 - Server ID
-- Leadership IDs
-- Role IDs
-- Channel IDs
-- Port setting
+- AI Hub Channel ID
+- AI Logs Channel ID
+- Leadership Role ID
+- Leadership User IDs
+- Gemini API Key
+- Gemini Model
 
-Never upload a real `.env` file publicly.
+This file should **never** be uploaded to a public GitHub repository.
 
 ---
 
-## `.gitignore`
+## .env.example
 
-```text
-.gitignore
+The `.env.example` file contains placeholder values instead of real credentials.
+
+Example:
+
+```env
+DISCORD_TOKEN=YOUR_BOT_TOKEN
+CLIENT_ID=YOUR_CLIENT_ID
+GUILD_ID=YOUR_SERVER_ID
+
+AI_HUB_CHANNEL_ID=YOUR_AI_HUB_CHANNEL_ID
+AI_LOGS_CHANNEL_ID=YOUR_AI_LOGS_CHANNEL_ID
+
+LEADERSHIP_ROLE_ID=YOUR_LEADERSHIP_ROLE_ID
+LEADERSHIP_USER_IDS=YOUR_DISCORD_USER_ID
+
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
-This tells Git which files should not be uploaded.
+When downloading this repository:
 
-It should normally include:
+1. Copy `.env.example`.
+2. Rename the copy to `.env`.
+3. Replace every placeholder with your own values.
+
+---
+
+## .gitignore
+
+The `.gitignore` file tells Git which files should never be uploaded.
+
+Recommended entries include:
 
 ```gitignore
 .env
 node_modules/
 ```
 
-If a secret was already uploaded before `.gitignore` was added, adding `.gitignore` does not make the old secret safe.
+This helps prevent sensitive credentials from being published accidentally.
 
-Reset any exposed bot token.
-
----
-
-## `.replit`
-
-```text
-.replit
-```
-
-This contains Replit-specific project settings.
-
-It may define:
-
-- The run command
-- The main file
-- The runtime
-- Replit workspace behavior
+If your Bot Token or Gemini API Key is ever committed to GitHub, revoke and replace those credentials immediately.
 
 ---
 
-## Data Files
+## README.md
 
-The repository may contain JSON files or a data folder.
+This document.
 
-These may store:
-
-- Staff members
-- Staff Discord IDs
-- Scheduled dates
-- Shift start times
-- Shift end times
-- Days off
-- Availability
-- Notes
-- Schedule-post information
-- Previous board-message IDs
-
-Do not remove data files without checking `index.js`.
-
-Search the source code for the filename before deleting or renaming it.
+It explains how to install, configure, operate, and customize Flapjack Kipper AI.
 
 ---
 
-# Importing the Project Into Replit
+# Importing the Project into Replit
 
-Replit can import a public GitHub repository.
+Replit provides an easy way to run Node.js projects without installing software locally.
+
+To import the repository:
 
 1. Visit:
 
-   https://replit.com/import
+https://replit.com/import
 
-2. Select the GitHub import option.
+2. Sign in to your Replit account.
 
-3. Paste the repository URL or connect your GitHub account.
+3. Connect your GitHub account if prompted.
 
-4. Select the Grimwood Schedule Board repository.
+4. Select your Flapjack Kipper AI repository.
 
-5. Allow Replit to create the project.
+5. Import the project.
 
-6. Wait for the files to load.
+6. Wait for Replit to finish creating the workspace.
 
-7. Confirm that you can see files such as:
+Once imported, verify that important files are present, including:
 
-```text
-index.js
-package.json
-package-lock.json
-.replit
-.gitignore
-```
-
-8. Do not expect private Secrets or environment variables to import automatically.
-
-You must add those separately.
+- `index.js`
+- `package.json`
+- `package-lock.json`
+- `.gitignore`
+- `.env.example`
+- `README.md`
 
 ---
 
-# Adding Secrets in Replit
+# Adding Replit Secrets
 
-Replit allows environment variables to be stored using its Secrets tool.
+Instead of storing sensitive information inside the repository, Replit provides **Secrets**, which function as secure environment variables.
 
-This is safer than placing a real token in a publicly visible file.
+Inside your Replit project:
 
-1. Open the imported Replit project.
-2. Open **Tools**.
-3. Find **Secrets** or the environment-variable tool.
-4. Select **New Secret**.
-5. Add each key and value separately.
+1. Open **Tools**.
+2. Select **Secrets**.
+3. Add each required environment variable individually.
 
-Add these keys:
+Create the following keys:
 
-```text
-SCHEDULE_BOARD_TOKEN
-SCHEDULE_BOARD_CLIENT_ID
-GUILD_ID
-LEADERSHIP_USER_IDS
-CHAIRMAN_ROLE_ID
-VICE_CHAIRMAN_ROLE_ID
-CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID
-SCHEDULE_BOARD_CHANNEL_ID
-SCHEDULE_LOG_CHANNEL_ID
-SCHEDULE_REQUESTS_CHANNEL_ID
-PORT
-```
+- DISCORD_TOKEN
+- CLIENT_ID
+- GUILD_ID
+- AI_HUB_CHANNEL_ID
+- AI_LOGS_CHANNEL_ID
+- LEADERSHIP_ROLE_ID
+- LEADERSHIP_USER_IDS
+- GEMINI_API_KEY
+- GEMINI_MODEL
 
 Example:
 
 Key:
 
-```text
-GUILD_ID
+```
+CLIENT_ID
 ```
 
 Value:
 
-```text
+```
 123456789012345678
 ```
 
-Do not enter this entire line as the value:
+Do **not** include the variable name in the value field.
 
-```text
-GUILD_ID=123456789012345678
+Incorrect:
+
 ```
-
-The key and value are entered into separate boxes in Replit.
-
-For the port:
-
-Key:
-
-```text
-PORT
+CLIENT_ID=123456789012345678
 ```
-
-Value:
-
-```text
-3000
-```
-
-Replit imports project files, but private secrets and API keys must be added separately. :contentReference[oaicite:0]{index=0}
 
 ---
 
 # Running the Bot in Replit
 
-After importing the project and adding the Secrets:
+After configuring your Secrets:
 
-1. Confirm that `index.js` exists.
-2. Confirm that `package.json` exists.
-3. Install the packages if Replit has not already done so.
-4. Press **Run**.
-5. Watch the Console.
-6. Wait for the bot-ready message.
-7. Open Discord.
-8. Confirm that the correct bot account appears online.
-9. Type `/` in the server.
-10. Confirm that the schedule commands appear.
+1. Confirm all required variables have been added.
+2. Verify that all dependencies are installed.
+3. Click the **Run** button.
+4. Wait for the console to initialize.
+5. Watch for any startup errors.
+6. Confirm that the bot connects to Discord.
+7. Verify that the bot appears online in your server.
 
-If Replit asks which file to run, select:
+If Replit asks which file to execute, select:
 
-```text
+```
 index.js
 ```
 
-If the project includes a web server, Replit may also display an application preview or public URL.
+---
+
+# Running the Bot Locally
+
+Flapjack Kipper AI can also run on your own computer.
+
+Recommended editors include:
+
+- Visual Studio Code
+- Cursor
+- WebStorm
+- Any Node.js-compatible IDE
+
+Before running locally:
+
+- Install Node.js.
+- Download the project.
+- Create a `.env` file.
+- Install all required dependencies.
 
 ---
 
-# Using Another Code Editor
+# Installing Node.js
 
-You may also use Visual Studio Code or another Node.js-compatible editor.
+Download the latest **LTS (Long-Term Support)** version of Node.js.
 
-1. Download Node.js:
+Official website:
 
-   https://nodejs.org/
+https://nodejs.org
 
-2. Download the repository.
-3. Extract the ZIP.
-4. Open the project folder in your code editor.
-5. Create a private `.env` file.
-6. Add the environment variables.
-7. Open a terminal in the project folder.
-8. Install the dependencies.
-9. Start the bot.
-10. Keep the terminal open while the bot is running.
+After installation, open a terminal or command prompt.
 
-Node.js is the runtime that executes the JavaScript bot code. :contentReference[oaicite:1]{index=1}
+Verify the installation:
+
+```bash
+node -v
+```
+
+You should see a version number.
+
+Also verify npm:
+
+```bash
+npm -v
+```
+
+If both commands return version numbers, Node.js has been installed successfully.
 
 ---
 
 # Installing Dependencies
 
-Open a terminal or Replit Shell and run:
-
-```bash
-npm install
-```
-
-This reads `package.json` and installs the required npm packages.
-
-The packages may include:
-
-- `discord.js`
-- `dotenv`
-- `express`
-- Date or timezone packages
-- Other packages required by the code
-
-Do not manually create the `node_modules` folder.
-
-npm creates it automatically.
-
----
-
-# Starting the Bot
-
-Start the project with:
-
-```bash
-node index.js
-```
-
-The project may also support:
-
-```bash
-npm start
-```
-
-Check the `scripts` section inside `package.json`.
-
-Example:
-
-```json
-"scripts": {
-  "start": "node index.js"
-}
-```
-
-If that exists, `npm start` should work.
-
----
-
-# Scheduling Commands
-
-The included version may contain commands similar to the following.
-
-## Staff Management
-
-```text
-/staffadd
-```
-
-Adds a staff member to the scheduling system.
-
-```text
-/staffremove
-```
-
-Removes a staff member from the scheduling system.
-
-```text
-/stafflist
-```
-
-Displays the current staff list.
-
-## Schedule Management
-
-```text
-/scheduleassign
-```
-
-Assigns a shift to a staff member.
-
-The command may request:
-
-- Staff member
-- Date
-- Start time
-- End time
-- Notes
-- Status
-
-```text
-/scheduleoff
-```
-
-Marks a staff member as off on a selected date.
-
-```text
-/scheduleremove
-```
-
-Removes an existing schedule entry.
-
-## Schedule Viewing
-
-```text
-/scheduleviewday
-```
-
-Displays the schedule for one selected date.
-
-```text
-/scheduleviewmonth
-```
-
-Displays the schedule for a selected month.
-
-## Schedule Posting
-
-```text
-/schedulepostday
-```
-
-Posts the schedule for a selected day.
-
-```text
-/scheduleposttoday
-```
-
-Posts the current day's schedule.
-
-```text
-/schedulepostmonth
-```
-
-Posts the schedule for a selected month.
-
-The exact command names and required options are controlled by `index.js`.
-
-If a listed command is not available, inspect the current source code or type `/` in Discord to view the registered commands.
-
----
-
-# Leadership Permissions
-
-Restricted schedule commands may be available to users who meet at least one leadership requirement.
-
-The bot may check for:
-
-- Chairman role
-- Vice Chairman role
-- Chief Administrative Officer role
-- Direct User ID inside `LEADERSHIP_USER_IDS`
-
-This provides two forms of authorization:
-
-## Role-Based Authorization
-
-A member receives access because they hold an approved Discord role.
-
-## Direct User Authorization
-
-A member receives access because their Discord User ID is listed directly.
-
-The direct User ID option may protect the primary owner from being locked out if a role is accidentally removed.
-
-Regular staff members should not receive access to restricted management commands unless the source code explicitly allows it.
-
----
-
-# Schedule Channels
-
-## Schedule Board
-
-Used for official schedule posts.
-
-Recommended permissions:
-
-- Staff can view
-- Leadership can manage
-- Bot can send messages
-- Bot can embed links
-- Bot can read message history
-
-## Schedule Log
-
-Used for private administrative records.
-
-Recommended permissions:
-
-- Leadership can view
-- Regular staff cannot view
-- Bot can send messages
-- Bot can embed links
-- Bot can read message history
-
-## Schedule Requests
-
-Used for schedule-related requests.
-
-Recommended permissions depend on your organization.
-
-Possible setup:
-
-- Staff can view
-- Staff can send messages
-- Leadership can respond
-- Bot can send messages
-- Bot can create or manage threads if supported
-
----
-
-# Date and Time Format
-
-The original Schedule Board may use a date format similar to:
-
-```text
-YYYY-MM-DD
-```
-
-Example:
-
-```text
-2026-03-07
-```
-
-This means:
-
-```text
-Year-Month-Day
-```
-
-Month number reference:
-
-```text
-January   = 01
-February  = 02
-March     = 03
-April     = 04
-May       = 05
-June      = 06
-July      = 07
-August    = 08
-September = 09
-October   = 10
-November  = 11
-December  = 12
-```
-
-Examples:
-
-```text
-March 7, 2026 = 2026-03-07
-July 28, 2026 = 2026-07-28
-October 31, 2026 = 2026-10-31
-```
-
-Do not enter:
-
-```text
-March 7
-```
-
-unless the current source code includes natural-language date parsing.
-
-Times may use:
-
-```text
-9:00 AM
-5:00 PM
-```
-
-or a 24-hour format, depending on the code.
-
----
-
-# How Schedule Data Works
-
-Grimwood Schedule Board may save scheduling information in local JSON files.
-
-JSON is a plain-text data format.
-
-The data may include:
-
-- Staff Discord User IDs
-- Staff display names
-- Dates
-- Shift start times
-- Shift end times
-- Days off
-- Notes
-- Statuses
-- Schedule-post message IDs
-- Previous board information
-
-Do not manually edit a data file while the bot is running unless you understand its structure.
-
-A missing comma, quote, bracket, or property may cause the bot to stop reading the file.
-
-Before manually editing schedule data:
-
-1. Stop the bot.
-2. Back up the file.
-3. Make the changes.
-4. Validate the JSON.
-5. Restart the bot.
-6. Review the Console for errors.
-7. Test the schedule commands.
-
----
-
-# Possible Schedule Statuses
-
-Depending on the included version, statuses may include:
-
-```text
-WORKING
-OFF
-WORKING FROM HOME
-TRAINING
-MEETING
-RESCHEDULED
-TENTATIVE
-```
-
-Not every version supports every status.
-
-Check `index.js` for the exact available options.
-
----
-
-# Updating the Bot
-
-Before installing an updated version:
-
-1. Stop the bot.
-2. Back up the private `.env` or Replit Secrets.
-3. Back up all schedule-data files.
-4. Back up the data folder.
-5. Replace the source-code files.
-6. Do not overwrite private data unless required.
-7. Run:
-
-```bash
-npm install
-```
-
-8. Restart the bot.
-9. Test every command.
-10. Confirm that existing schedules still appear.
-
----
-
-# Troubleshooting
-
-## The Bot Is Offline
-
-Check:
-
-- Is the Replit project running?
-- Is `SCHEDULE_BOARD_TOKEN` correct?
-- Was the token reset?
-- Is the `.env` file named correctly?
-- Were Replit Secrets entered correctly?
-- Are there errors in the Console?
-- Is the hosting service active?
-
----
-
-## Invalid Token
-
-Possible causes:
-
-- The token was copied incorrectly.
-- The token belongs to another bot.
-- The token was reset.
-- The token contains spaces.
-- The variable name was entered twice.
-- The secret was placed under the wrong key.
-
-Correct:
-
-```env
-SCHEDULE_BOARD_TOKEN=YOUR_TOKEN
-```
-
-Incorrect:
-
-```env
-SCHEDULE_BOARD_TOKEN=SCHEDULE_BOARD_TOKEN=YOUR_TOKEN
-```
-
----
-
-## The Wrong Bot Logs In
-
-The token belongs to another Discord application.
-
-1. Open the intended Schedule Board application.
-2. Open **Bot**.
-3. Reset or copy that bot's token.
-4. Replace `SCHEDULE_BOARD_TOKEN`.
-5. Restart the project.
-
----
-
-## Slash Commands Do Not Appear
-
-Check:
-
-```env
-SCHEDULE_BOARD_CLIENT_ID=YOUR_APPLICATION_ID
-GUILD_ID=YOUR_SERVER_ID
-```
-
-Also confirm:
-
-- The bot is in the correct server.
-- The Client ID belongs to the same application as the token.
-- The bot was installed with `applications.commands`.
-- The command-registration code ran.
-- No registration error appears in the Console.
-- The Guild ID contains numbers only.
-
----
-
-## Leadership Commands Do Not Work
-
-Check:
-
-```env
-LEADERSHIP_USER_IDS=YOUR_USER_ID
-CHAIRMAN_ROLE_ID=YOUR_ROLE_ID
-VICE_CHAIRMAN_ROLE_ID=YOUR_ROLE_ID
-CHIEF_ADMINISTRATIVE_OFFICER_ROLE_ID=YOUR_ROLE_ID
-```
-
-Confirm:
-
-- You copied a User ID for `LEADERSHIP_USER_IDS`.
-- You copied Role IDs for the role variables.
-- The user holds one of the approved roles.
-- The IDs belong to the correct server.
-- The bot was restarted after changing the values.
-
----
-
-## Schedule Board Channel Not Found
-
-Check:
-
-```env
-SCHEDULE_BOARD_CHANNEL_ID=YOUR_CHANNEL_ID
-```
-
-Confirm:
-
-- The channel exists.
-- The ID is correct.
-- The bot can view the channel.
-- The bot can send messages.
-- The channel belongs to the configured server.
-
----
-
-## Schedule Log Channel Not Found
-
-Check:
-
-```env
-SCHEDULE_LOG_CHANNEL_ID=YOUR_CHANNEL_ID
-```
-
-Confirm that the bot can:
-
-- View the channel
-- Send messages
-- Embed links
-- Read message history
-
----
-
-## Schedule Requests Channel Not Found
-
-Check:
-
-```env
-SCHEDULE_REQUESTS_CHANNEL_ID=YOUR_CHANNEL_ID
-```
-
-Confirm that the channel still exists and belongs to the configured server.
-
----
-
-## `Cannot Find Module`
+Navigate to the project folder.
 
 Run:
 
@@ -1609,373 +1071,71 @@ Run:
 npm install
 ```
 
-Then restart:
+This command downloads every dependency listed in `package.json`.
+
+A new folder named:
+
+```
+node_modules
+```
+
+will be created automatically.
+
+Do not create this folder manually.
+
+---
+
+# Starting the Bot
+
+Once everything has been configured, start the bot.
+
+Option 1:
 
 ```bash
 node index.js
 ```
 
----
+Option 2 (if configured in `package.json`):
 
-## Port Error
-
-Check:
-
-```env
-PORT=3000
+```bash
+npm start
 ```
 
-If the hosting provider automatically assigns a port, confirm that the source code supports:
+The console should display startup messages indicating that the bot is connecting to Discord.
 
-```js
-process.env.PORT
-```
+If the connection is successful:
 
-Do not run multiple applications on the same local port.
-
----
-
-## Date Is Rejected
-
-Use:
-
-```text
-YYYY-MM-DD
-```
-
-Example:
-
-```text
-2026-03-07
-```
-
-Do not use:
-
-```text
-March 7
-```
-
-unless the bot version explicitly supports it.
+- The bot will appear online.
+- Slash commands (if applicable) will become available.
+- The AI service will initialize.
+- The bot will be ready to receive requests.
 
 ---
 
-## Data Does Not Save
+# Registering Slash Commands
 
-Possible causes:
+Some versions of Flapjack Kipper AI automatically register slash commands when the bot starts.
 
-- The hosting provider uses temporary storage.
-- The data file does not exist.
-- The JSON is invalid.
-- The bot cannot write to the project folder.
-- The project was redeployed.
-- The source code uses a different filename.
-- The app stopped before saving.
+Others may use a separate command registration script.
 
-Some hosting providers do not guarantee permanent local-file storage.
+If your version includes a dedicated command registration file (such as `deploy-commands.js`), run that script before starting the bot.
 
-For long-term use, consider adapting the project to use a permanent database.
+If your version registers commands automatically through `index.js`, no additional action is required.
+
+Refer to the files included in your version of the repository to determine which method is used.
 
 ---
 
-# Testing Checklist
-
-Before using the bot with real staff, test it inside a private server.
-
-- [ ] The correct bot logs in
-- [ ] The bot appears online
-- [ ] Slash commands appear
-- [ ] The Guild ID is correct
-- [ ] The Schedule Board channel is detected
-- [ ] The Schedule Log channel is detected
-- [ ] The Schedule Requests channel is detected
-- [ ] Chairman permissions work
-- [ ] Vice Chairman permissions work
-- [ ] Chief Administrative Officer permissions work
-- [ ] Leadership User ID override works
-- [ ] Regular users cannot use restricted commands
-- [ ] Staff can be added
-- [ ] Staff can be removed
-- [ ] Staff list displays correctly
-- [ ] A shift can be assigned
-- [ ] A staff member can be marked off
-- [ ] A schedule entry can be removed
-- [ ] Daily schedule view works
-- [ ] Monthly schedule view works
-- [ ] Daily schedule post works
-- [ ] Today's schedule post works
-- [ ] Monthly schedule post works
-- [ ] Schedule changes are logged
-- [ ] Dates display correctly
-- [ ] Times display correctly
-- [ ] Data remains after a restart
-- [ ] No private token is visible publicly
-
----
-
-# Privacy and Staff Information
-
-This project may store staff scheduling information.
-
-The person operating the bot is responsible for protecting:
-
-- Staff names
-- Discord User IDs
-- Work schedules
-- Availability
-- Time-off information
-- Shift notes
-- Leadership records
-- Schedule requests
-- Internal organizational information
-
-Before publishing your copy, inspect:
-
-- JSON files
-- Data folders
-- Log files
-- Screenshots
-- Example schedules
-- Channel IDs
-- User IDs
-- Role IDs
-
-Remove real staff data before making the repository public.
-
-You may replace sample data with empty structures such as:
-
-```json
-{}
-```
-
-or:
-
-```json
-[]
-```
-
-Use the structure expected by `index.js`.
-
----
-
-# Customization
-
-You may customize your own version by editing `index.js`.
-
-Possible customizations include:
-
-- Bot name
-- Role names
-- Channel names
-- Embed wording
-- Schedule statuses
-- Date format
-- Time format
-- Command names
-- Leadership requirements
-- Logging behavior
-- Automatic schedule posting
-- Notes
-- Rescheduling
-- Work-from-home status
-- Training status
-- Meeting status
-- Tentative shifts
-- Branding
-- Bot icon
-
-Create a backup before changing working code.
-
-Changing slash-command definitions may require the commands to be registered again.
-
----
-
-# Original Project Information
-
-**Project Name:** Grimwood Schedule Board  
-**Project Type:** Discord staff scheduling bot  
-**Runtime:** Node.js  
-**Primary File:** `index.js`  
-**Primary Platform:** Discord  
-**Recommended Beginner Platform:** Replit  
-**Original Organization:** Grimwood Forest Creative & Operations  
-
----
-
-# Repository Notes
-
-This repository is a public or archived source-code release.
-
-It is not automatically connected to the original private system.
-
-Downloading this repository does not provide:
-
-- Access to the original Discord server
-- Access to original staff schedules
-- Original leadership permissions
-- Original private channels
-- Original Discord token
-- Original hosting account
-- Original Replit Secrets
-- Private staff records
-- Guaranteed technical support
-- Guaranteed future updates
-
-Each installer must create and manage their own:
-
-- Discord application
-- Discord bot
-- Server
-- Roles
-- Channels
-- Hosting
-- Environment variables
-- Staff data
-- Backups
-- Security settings
-
----
-
-# Credits
-
-Originally designed and developed for:
-
-```text
-Grimwood Forest Creative & Operations
-```
-
-Original development and maintenance credited to:
-
-```text
-officialdarkevilpark
-```
-
-The source code has been preserved so it may be reviewed, archived, learned from, or adapted for another Discord community or organization.
-
----
-
-# Disclaimer
-
-This software is provided as-is.
-
-The original developer does not guarantee:
-
-- Continuous operation
-- Compatibility with future Discord API changes
-- Compatibility with every hosting provider
-- Permanent data storage
-- Recovery of deleted schedules
-- Free hosting availability
-- Protection from incorrect configuration
-- Ongoing updates
-- Ongoing technical support
-- Compatibility with every Node.js version
-
-Anyone operating or modifying this bot assumes responsibility for:
-
-- Discord configuration
-- Bot permissions
-- Hosting
-- Security
-- Token protection
-- Staff privacy
-- Schedule accuracy
-- Backups
-- Data loss
-- Code modifications
-- Discord platform compliance
-- Applicable organizational or legal requirements
-
-Discord, Replit, GitHub, Node.js, and npm are separate platforms and are not owned or operated by this project's original developer.
-
----
-
-# Official Resources
-
-## Discord
-
-Discord Developer Portal:
-
-https://discord.com/developers/home
-
-Discord Applications:
-
-https://discord.com/developers/applications
-
-Discord Developer Documentation:
-
-https://discord.com/developers/docs/intro
-
-Discord Developer Terms:
-
-https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
-
-## Replit
-
-Replit Home:
-
-https://replit.com/
-
-Import a Repository:
-
-https://replit.com/import
-
-Replit Documentation:
-
-https://docs.replit.com/
-
-## GitHub
-
-GitHub Home:
-
-https://github.com/
-
-GitHub README Documentation:
-
-https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
-
-## Node.js and npm
-
-Node.js:
-
-https://nodejs.org/
-
-npm Documentation:
-
-https://docs.npmjs.com/
-
----
-
-# Final Setup Summary
-
-To operate your own Grimwood Schedule Board bot:
-
-1. Download or import this repository.
-2. Create a Discord application.
-3. Create the bot account.
-4. Copy the bot token.
-5. Copy the Application ID.
-6. Invite the bot with the `bot` and `applications.commands` scopes.
-7. Enable Discord Developer Mode.
-8. Create the required leadership roles.
-9. Create the required schedule channels.
-10. Copy all required Discord IDs.
-11. Create a private `.env` file or Replit Secrets.
-12. Add all required environment variables.
-13. Run `npm install`.
-14. Start the project with `node index.js`.
-15. Confirm the correct bot appears online.
-16. Confirm the slash commands appear.
-17. Test leadership permissions.
-18. Test staff management.
-19. Test schedule assignments.
-20. Test schedule posting.
-21. Test logging.
-22. Back up the schedule data.
-23. Protect the bot token.
-24. Protect staff information.
-
----
-
-# Grimwood Schedule Board
-
-**Organized staff scheduling, schedule requests, leadership controls, and operational planning for Discord communities.**
+# Verifying Startup
+
+Before using Flapjack Kipper AI, confirm the following:
+
+- The bot is online in Discord.
+- No errors appear in the console.
+- The Gemini API initializes successfully.
+- Slash commands are available (if supported).
+- The AI Hub channel is configured correctly.
+- The AI Logs channel is configured correctly.
+- Leadership permissions are functioning as expected.
+
+Once these checks are complete, Flapjack Kipper AI is ready to begin responding to AI requests.
